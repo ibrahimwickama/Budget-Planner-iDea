@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_account_circle_48dp"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings_48dp"
+            android:title="Settings" />
+        <item
+            android:id="@+id/nav_cust_visuals"
+            android:icon="@drawable/ic_donut_48dp"
+            android:title="Custom Visuals" />
+        <item
+            android:id="@+id/nav_cust_inputs"
+            android:icon="@drawable/ic_assessment_48dp"
+            android:title="Custom Inputs" />
+    </group>
+
+    <item android:title="Others">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_info_outline_48dp"
+                android:title="About" />
+            <item
+                android:id="@+id/nav_logOut"
+                android:icon="@drawable/ic_power_48dp"
+                android:title="LogOut" />
+        </menu>
+    </item>
+
+</menu>
