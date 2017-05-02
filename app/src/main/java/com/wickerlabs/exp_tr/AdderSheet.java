@@ -51,7 +51,8 @@ public class AdderSheet extends AppCompatActivity {
         String[] a={"Transport", "Bills","Shopping","Food","Credits"};
         SpinnerAdapter spinnerAdapter= new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, a );
 
-        spinner.setAdapter(spinnerAdapter);
+       spinner.setAdapter(spinnerAdapter);
+
         add.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
