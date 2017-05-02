@@ -10,13 +10,11 @@
     tools:showIn="@layout/app_bar_main">
 
 
-    <fragment
-        android:layout_width="match_parent"
+    <android.support.v4.view.ViewPager
+        android:layout_width="wrap_content"
         android:layout_height="300dp"
-        android:name="com.wickerlabs.exp_tr.DisplayField"
-        android:id="@+id/displayPart"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/displayPart">
+    </android.support.v4.view.ViewPager>
 
     <TabHost
         android:layout_width="match_parent"

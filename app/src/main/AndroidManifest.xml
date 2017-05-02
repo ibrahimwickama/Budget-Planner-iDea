@@ -18,7 +18,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DisplayField" />
         <activity android:name=".Summaries" />
         <activity android:name=".Today" />
         <activity android:name=".Yesterday" />
@@ -26,7 +25,9 @@
             android:name=".AdderSheet"
             android:theme="@style/CustomPopUp" />
         <activity android:name=".Profile" />
-        <activity android:name=".Prof_edit"></activity>
+        <activity android:name=".Prof_edit" />
+        <activity android:name=".Disp1" />
+        <activity android:name=".Disp2"></activity>
     </application>
 
 </manifest>

@@ -42,10 +42,13 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+            // they Load pieChart view on a ViewPager with its custom Adapter
+        ViewPager viewPager=(ViewPager)findViewById(R.id.displayPart);
+        viewPager.setAdapter(new CustomPagerAdapter(getSupportFragmentManager()));
+
+            // Pink Add Circle Floating button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
         //fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.plus));
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
