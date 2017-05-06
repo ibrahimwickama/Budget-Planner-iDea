@@ -50,6 +50,9 @@ dependencies {
     //library for pieChart
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
+
+    // cool pieChart library
+    compile 'com.github.zurche:plain-pie:v0.2.2'
 }
 
 

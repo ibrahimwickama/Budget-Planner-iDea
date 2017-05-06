@@ -7,13 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
-
-import java.util.ArrayList;
+import az.plainpie.PieView;
+import az.plainpie.animation.PieAngleAnimation;
 
 public class Disp1 extends Fragment {
 
@@ -28,34 +23,31 @@ public class Disp1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_disp1, container, false);
 
-        PieChart pieChart = (PieChart) v.findViewById(R.id.chart);
+        PieView pieView = (PieView) v.findViewById(R.id.pieView);
+        pieView.setPercentageBackgroundColor(getResources().getColor(R.color.lightBlue));
+        pieView.setPieInnerPadding(50);
+        pieView.setInnerTextVisibility(View.VISIBLE);
+        pieView.setPercentage(90);
 
-        ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(4f, 0));
-        entries.add(new Entry(8f, 1));
-        entries.add(new Entry(6f, 2));
-        entries.add(new Entry(12f, 3));
-        entries.add(new Entry(18f, 4));
-        entries.add(new Entry(9f, 5));
+            // Change the text of the widget
+        pieView.setInnerText("90%");
 
-        PieDataSet dataset = new PieDataSet(entries, "# of Calls");
+        // Change the text size of the widget
+        pieView.setPercentageTextSize(45);
 
-        ArrayList<String> labels = new ArrayList<String>();
-        labels.add("January");
-        labels.add("February");
-        labels.add("March");
-        labels.add("April");
-        labels.add("May");
-        labels.add("Junee");
+        PieAngleAnimation animation = new PieAngleAnimation(pieView);
+        animation.setDuration(2000); //This is the duration of the animation in millis
+        pieView.startAnimation(animation);
 
-        PieData data = new PieData(labels, dataset);
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
-        pieChart.setDescription("Description");
-        pieChart.setData(data);
+            // Change the color fill of the bar representing the current percentage
+        // pieView.setPercentageBackgroundColor(getResources().getColor(R.color.customColor1));
 
-        pieChart.animateY(5000);
+            // Change the color fill of the background of the widget, by default is transparent
+        //pieView.setMainBackgroundColor(getResources().getColor(R.color.customColor5));
 
-        pieChart.saveToGallery("/sd/mychart.jpg", 85); // 85 is the quality of the image
+            // Change the color of the text of the widget
+        // pieView.setTextColor(getResources().getColor(R.color.customColor12));
+
 
         return v;
     }
