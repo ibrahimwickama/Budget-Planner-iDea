@@ -30,17 +30,16 @@ public class Disp2 extends Fragment {
         entries.add(new Entry(6f, 2));
         entries.add(new Entry(12f, 3));
         entries.add(new Entry(18f, 4));
-        entries.add(new Entry(9f, 5));
 
-        PieDataSet dataset = new PieDataSet(entries, "# of Calls");
+
+        PieDataSet dataset = new PieDataSet(entries, "Key");
 
         ArrayList<String> labels = new ArrayList<String>();
-        labels.add("January");
-        labels.add("February");
-        labels.add("March");
-        labels.add("April");
-        labels.add("May");
-        labels.add("Junee");
+        labels.add("Transport");
+        labels.add("Bills");
+        labels.add("Shopping");
+        labels.add("Food");
+        labels.add("Credits");
 
         PieData data = new PieData(labels, dataset);
         dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
