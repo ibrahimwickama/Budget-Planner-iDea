@@ -13,7 +13,7 @@
         <item
             android:id="@+id/nav_cust_visuals"
             android:icon="@drawable/ic_donut_48dp"
-            android:title="Custom Visuals" />
+            android:title="Custom Visuals"/>
         <item
             android:id="@+id/nav_cust_inputs"
             android:icon="@drawable/ic_assessment_48dp"
