@@ -36,21 +36,17 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     // arc visual
     compile 'devlight.io:arcprogressstackview:1.0.4'
-
     // Eaze graph
     compile 'com.github.blackfizz:eazegraph:1.2.5l@aar'
     compile 'com.nineoldandroids:library:2.4.0'
-
     // libraries for sliding animation
-    compile "com.android.support:support-v4:+"
+    compile 'com.android.support:support-v4:+'
     compile 'com.squareup.picasso:picasso:2.3.2'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.slider:library:1.1.5@aar'
-
     //library for pieChart
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
-
     // cool pieChart library
     compile 'com.github.zurche:plain-pie:v0.2.2'
 }

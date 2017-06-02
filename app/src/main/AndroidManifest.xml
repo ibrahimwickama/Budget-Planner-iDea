@@ -24,10 +24,13 @@
         <activity
             android:name=".AdderSheet"
             android:theme="@style/CustomPopUp" />
-        <activity android:name=".Profile" />
         <activity android:name=".Prof_edit" />
         <activity android:name=".Disp1" />
-        <activity android:name=".Disp2"></activity>
+        <activity android:name=".Disp2" />
+        <activity
+            android:name=".Profile"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
