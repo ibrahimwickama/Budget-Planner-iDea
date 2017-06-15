@@ -38,18 +38,17 @@ public class Profile extends AppCompatActivity {
 
         if(userName== null || userPhoneDisp==null || userEmailDisp==null || userBudgetDisp==null){
 
-            userNameDisp.setText("User Name");
-            userPhoneDisp.setText("Phone");
-            userEmailDisp.setText("Email");
-            userBudgetDisp.setText("Budget money");
-        }else {
-
             SharedPreferences sharedPref = getSharedPreferences("profileInfo", Context.MODE_PRIVATE);
             userNameDisp.setText(sharedPref.getString("username", ""));
             userPhoneDisp.setText(sharedPref.getString("phone", ""));
             userEmailDisp.setText(sharedPref.getString("email", ""));
             userBudgetDisp.setText(sharedPref.getString("budget", ""));
 
+        }else {
+            userNameDisp.setText("User Name");
+            userPhoneDisp.setText("Phone");
+            userEmailDisp.setText("Email");
+            userBudgetDisp.setText("Budget money");
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
