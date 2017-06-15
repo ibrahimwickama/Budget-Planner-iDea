@@ -1,6 +1,8 @@
 package com.wickerlabs.exp_tr;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,8 +18,8 @@ import android.widget.TextView;
 
 public class Profile extends AppCompatActivity {
 
-    public TextView userNameDisp, userPhoneDisp, userEmailDisp, userBudgetDisp;
-    public EditText userName,phone, email, budgetValue;
+    TextView userNameDisp, userPhoneDisp, userEmailDisp, userBudgetDisp;
+    EditText userName,phone, email, budgetValue;
 
 
     @Override
@@ -29,12 +31,26 @@ public class Profile extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         userNameDisp =(TextView)findViewById(R.id.tvNumber0);
         userPhoneDisp =(TextView)findViewById(R.id.tvNumber1);
         userEmailDisp =(TextView)findViewById(R.id.tvNumber3);
         userBudgetDisp =(TextView)findViewById(R.id.cash);
 
+        if(userName== null || userPhoneDisp==null || userEmailDisp==null || userBudgetDisp==null){
+
+            userNameDisp.setText("User Name");
+            userPhoneDisp.setText("Phone");
+            userEmailDisp.setText("Email");
+            userBudgetDisp.setText("Budget money");
+        }else {
+
+            SharedPreferences sharedPref = getSharedPreferences("profileInfo", Context.MODE_PRIVATE);
+            userNameDisp.setText(sharedPref.getString("username", ""));
+            userPhoneDisp.setText(sharedPref.getString("phone", ""));
+            userEmailDisp.setText(sharedPref.getString("email", ""));
+            userBudgetDisp.setText(sharedPref.getString("budget", ""));
+
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +66,6 @@ public class Profile extends AppCompatActivity {
 
         LayoutInflater li = LayoutInflater.from(this);
         View promptsView = li.inflate(R.layout.activity_prof_edit, null);
-
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
@@ -78,11 +93,18 @@ public class Profile extends AppCompatActivity {
                                 String userEmail= email.getText().toString();
                                 String userBudget= budgetValue.getText().toString();
 
-
                                 userNameDisp.setText(username);
                                 userPhoneDisp.setText(userPhone);
                                 userEmailDisp.setText(userEmail);
                                 userBudgetDisp.setText(userBudget);
+
+                                SharedPreferences sharedPref = getSharedPreferences("profileInfo", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor= sharedPref.edit();
+                                editor.putString("username",username );
+                                editor.putString("phone", userPhone);
+                                editor.putString("email", userEmail);
+                                editor.putString("budget", userBudget);
+                                editor.commit();
                                 // weka functions humu
 
                             }

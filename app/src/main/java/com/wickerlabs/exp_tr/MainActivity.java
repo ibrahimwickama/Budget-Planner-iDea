@@ -3,6 +3,7 @@ package com.wickerlabs.exp_tr;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -24,6 +25,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Adding Expenses", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
              /*   Intent intent= new Intent(MainActivity.this, AdderSheet.class);
@@ -73,6 +75,10 @@ public class MainActivity extends AppCompatActivity
                 // set alertdialog builder
                 alertDialogBuilder.setView(promptsView);
 
+                TextView cashfrom=(TextView)promptsView.findViewById(R.id.cash_from);
+
+                SharedPreferences sharedPref= getSharedPreferences("profileInfo", Context.MODE_PRIVATE);
+                cashfrom.setText(sharedPref.getString("budget", ""));
 
 
                 spinner=(Spinner)promptsView.findViewById(R.id.spinner);

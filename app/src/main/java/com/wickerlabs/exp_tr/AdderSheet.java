@@ -1,5 +1,7 @@
 package com.wickerlabs.exp_tr;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -31,8 +33,11 @@ public class AdderSheet extends AppCompatActivity {
         cashfrom=(TextView)findViewById(R.id.cash_from);
         spinner=(Spinner)findViewById(R.id.spinner);
         cost_in=(EditText)findViewById(R.id.editText);
-        note=(EditText)findViewById(R.id.editText2);
         //add=(Button)findViewById(R.id.button);
+
+
+        SharedPreferences sharedPref= getSharedPreferences("profileInfo", Context.MODE_PRIVATE);
+        cashfrom.setText(sharedPref.getString("budget", ""));
 
 
         DisplayMetrics dm= new DisplayMetrics();
@@ -61,5 +66,9 @@ public class AdderSheet extends AppCompatActivity {
                     }
                 }
         );
+
+
+
+
     }
 }
