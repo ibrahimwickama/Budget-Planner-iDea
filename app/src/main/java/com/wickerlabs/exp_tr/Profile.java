@@ -1,8 +1,7 @@
 package com.wickerlabs.exp_tr;
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +23,7 @@ public class Profile extends AppCompatActivity {
 
     TextView userNameDisp, userPhoneDisp, userEmailDisp, userBudgetDisp;
     EditText userName,phone, email, budgetValue;
+    Button editButton;
 
     DatabaseHelper helper;
 
@@ -37,6 +38,7 @@ public class Profile extends AppCompatActivity {
 
         helper= new DatabaseHelper(this);
 
+        editButton=(Button)findViewById(R.id.editBtn);
         userNameDisp =(TextView)findViewById(R.id.tvNumber0);
         userPhoneDisp =(TextView)findViewById(R.id.tvNumber1);
         userEmailDisp =(TextView)findViewById(R.id.tvNumber3);
@@ -44,27 +46,21 @@ public class Profile extends AppCompatActivity {
 
         if(userName== null || userPhoneDisp==null || userEmailDisp==null || userBudgetDisp==null){
 
-            SharedPreferences sharedPref = getSharedPreferences("profileInfo", Context.MODE_PRIVATE);
-            userNameDisp.setText(sharedPref.getString("username", ""));
-            userPhoneDisp.setText(sharedPref.getString("phone", ""));
-            userEmailDisp.setText(sharedPref.getString("email", ""));
-            userBudgetDisp.setText(sharedPref.getString("budget", ""));
-
-//            Cursor res = helper.getAllData();
-//            if(res.getCount() == 0) {
-//                // show message
-//                Toast.makeText(Profile.this, "No Data Found", Toast.LENGTH_SHORT).show();
-//                return;
-//            }
-//
-//            StringBuffer buffer = new StringBuffer();
-//            while (res.moveToNext()) {
-//                userNameDisp.setText(buffer.append(res.getString(0)+"\n"));
-//                userPhoneDisp.setText(buffer.append(res.getString(1)+"\n"));
-//                userEmailDisp.setText(buffer.append(res.getString(2)+"\n"));
-//                userBudgetDisp.setText(buffer.append(res.getString(3)+"\n"));
-//            }
-//
+            Cursor res = helper.getAllData();
+            if(res.getCount() == 0) {
+                // show message if no data found in the database yet
+                Toast.makeText(Profile.this, "No Data Found", Toast.LENGTH_SHORT).show();
+                return;
+            }
+                // greyOut the edit button if there is Data on Database
+            editButton.setEnabled(false);
+                // Using cursor to get column string values and setText them
+            while (res.moveToNext()) {
+                userNameDisp.setText(res.getString(1));
+                userPhoneDisp.setText(res.getString(2));
+                userEmailDisp.setText(res.getString(3));
+                userBudgetDisp.setText(res.getString(4));
+            }
 
         }else {
             userNameDisp.setText("User Name");
@@ -81,6 +77,7 @@ public class Profile extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
     }
 
     public void editProfile(View view){
@@ -94,13 +91,9 @@ public class Profile extends AppCompatActivity {
         alertDialogBuilder.setView(promptsView);
 
         userName=(EditText) promptsView.findViewById(R.id.user_name);
-
         phone= (EditText) promptsView.findViewById(R.id.user_phoneNo);
-
         email= (EditText) promptsView.findViewById(R.id.user_email);
-
         budgetValue=(EditText) promptsView.findViewById(R.id.user_budget);
-
 
         // set dialog message
         alertDialogBuilder
@@ -119,14 +112,7 @@ public class Profile extends AppCompatActivity {
                                 userEmailDisp.setText(userEmail);
                                 userBudgetDisp.setText(userBudget);
 
-                                SharedPreferences sharedPref = getSharedPreferences("profileInfo", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor= sharedPref.edit();
-                                editor.putString("username",username );
-                                editor.putString("phone", userPhone);
-                                editor.putString("email", userEmail);
-                                editor.putString("budget", userBudget);
-                                editor.commit();
-
+                                    //takes the data and adds them to Database
                                 helper.addUser(username,userPhone, userEmail, userBudget);
 
                                 Toast.makeText(Profile.this, "Done", Toast.LENGTH_SHORT).show();

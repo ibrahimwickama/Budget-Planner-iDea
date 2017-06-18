@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:layout_toEndOf="@id/ivContactItem1"
-                    android:text="(123) 456-7890"
+                    android:text="Phone number"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#212121" />
 
@@ -148,7 +148,7 @@
                     android:layout_toStartOf="@+id/chkState3"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="chintan@letsnurture.com"
+                    android:text="Email "
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#212121" />
 
@@ -211,7 +211,7 @@
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@id/ivContactItem5"
-                    android:text="100000"
+                    android:text="Money"
                     android:textSize="20sp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="#727272"
@@ -233,7 +233,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Edit info"
-                android:onClick="editProfile" />
+                android:onClick="editProfile"
+                android:id="@+id/editBtn" />
 
 
 

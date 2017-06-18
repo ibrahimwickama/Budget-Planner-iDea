@@ -3,7 +3,7 @@ package com.wickerlabs.exp_tr;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -27,6 +27,8 @@ import android.widget.SpinnerAdapter;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.wickerlabs.exp_tr.Databases.DatabaseHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity
     static TabHost tabHost;
     Spinner spinner;
 
+    DatabaseHelper helper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,31 +48,24 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        helper= new DatabaseHelper(this);
+
             // they Load pieChart view on a ViewPager with its custom Adapter
         ViewPager viewPager=(ViewPager)findViewById(R.id.displayPart);
         viewPager.setAdapter(new CustomPagerAdapter(getSupportFragmentManager()));
 
             // Pink Add Circle Floating button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        //fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.plus));
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Adding Expenses", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
-             /*   Intent intent= new Intent(MainActivity.this, AdderSheet.class);
-                startActivity(intent);  */
 
-             /*   Dialog dialog= new Dialog(getApplicationContext());
-                dialog.setContentView(R.layout.activity_adder_sheet);
-                dialog.setCanceledOnTouchOutside(true);
-                dialog.show();  */
-
-                // get data_call_limits.xml view as dialog view
+                // get adderSheet.xml view as dialog view
                 LayoutInflater li = LayoutInflater.from(MainActivity.this);
                 View promptsView = li.inflate(R.layout.activity_adder_sheet, null);
-
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
 
@@ -77,25 +74,19 @@ public class MainActivity extends AppCompatActivity
 
                 TextView cashfrom=(TextView)promptsView.findViewById(R.id.cash_from);
 
-                SharedPreferences sharedPref= getSharedPreferences("profileInfo", Context.MODE_PRIVATE);
-                cashfrom.setText(sharedPref.getString("budget", ""));
-
+                Cursor res = helper.getAllData();
+                while (res.moveToNext()) {
+                    cashfrom.setText(res.getString(4));
+                }
 
                 spinner=(Spinner)promptsView.findViewById(R.id.spinner);
-
 
                 String[] a={"Transport", "Bills","Shopping","Food","Credits"};
                 SpinnerAdapter spinnerAdapter= new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, a );
 
                 spinner.setAdapter(spinnerAdapter);
 
-                     /*   mb_limit = (EditText) promptsView
-                                .findViewById(R.id.max_MB_Limit);
-
-                        call_limit = (EditText) promptsView
-                                .findViewById(R.id.max_call_limit);  */
-
-                // set dialog message
+                // set Actions when SET button on alertDialog is clicked
                 alertDialogBuilder
                         .setCancelable(true)
                         .setPositiveButton("Set",
@@ -134,7 +125,6 @@ public class MainActivity extends AppCompatActivity
         // use the methods for TabHost and ViewPage
         initTabHost();
         initViewPager();
-
     }
 
     // Creating Tabs on the screen
