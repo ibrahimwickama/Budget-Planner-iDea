@@ -76,6 +76,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
+    public Cursor getAllData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query= "select * from "+USER_TABLE;
+        Cursor res = db.rawQuery(query,null);
+        return res;
+    }
+
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + USER_TABLE);

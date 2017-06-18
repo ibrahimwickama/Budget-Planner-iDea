@@ -50,6 +50,22 @@ public class Profile extends AppCompatActivity {
             userEmailDisp.setText(sharedPref.getString("email", ""));
             userBudgetDisp.setText(sharedPref.getString("budget", ""));
 
+//            Cursor res = helper.getAllData();
+//            if(res.getCount() == 0) {
+//                // show message
+//                Toast.makeText(Profile.this, "No Data Found", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//
+//            StringBuffer buffer = new StringBuffer();
+//            while (res.moveToNext()) {
+//                userNameDisp.setText(buffer.append(res.getString(0)+"\n"));
+//                userPhoneDisp.setText(buffer.append(res.getString(1)+"\n"));
+//                userEmailDisp.setText(buffer.append(res.getString(2)+"\n"));
+//                userBudgetDisp.setText(buffer.append(res.getString(3)+"\n"));
+//            }
+//
+
         }else {
             userNameDisp.setText("User Name");
             userPhoneDisp.setText("Phone");
