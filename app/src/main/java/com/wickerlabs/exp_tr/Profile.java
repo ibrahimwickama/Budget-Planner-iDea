@@ -15,12 +15,16 @@ import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.wickerlabs.exp_tr.Databases.DatabaseHelper;
 
 public class Profile extends AppCompatActivity {
 
     TextView userNameDisp, userPhoneDisp, userEmailDisp, userBudgetDisp;
     EditText userName,phone, email, budgetValue;
 
+    DatabaseHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,8 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        helper= new DatabaseHelper(this);
 
         userNameDisp =(TextView)findViewById(R.id.tvNumber0);
         userPhoneDisp =(TextView)findViewById(R.id.tvNumber1);
@@ -104,6 +110,10 @@ public class Profile extends AppCompatActivity {
                                 editor.putString("email", userEmail);
                                 editor.putString("budget", userBudget);
                                 editor.commit();
+
+                                helper.addUser(username,userPhone, userEmail, userBudget);
+
+                                Toast.makeText(Profile.this, "Done", Toast.LENGTH_SHORT).show();
                                 // weka functions humu
 
                             }
