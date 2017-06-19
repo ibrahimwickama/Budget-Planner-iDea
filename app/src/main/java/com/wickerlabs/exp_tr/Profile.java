@@ -1,8 +1,12 @@
 package com.wickerlabs.exp_tr;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
@@ -14,17 +18,20 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wickerlabs.exp_tr.Databases.DatabaseHelper;
+
+import java.io.IOException;
 
 public class Profile extends AppCompatActivity {
 
     TextView userNameDisp, userPhoneDisp, userEmailDisp, userBudgetDisp;
     EditText userName,phone, email, budgetValue;
     Button editButton;
-
+    ImageView profPic;
     DatabaseHelper helper;
 
     @Override
@@ -43,6 +50,7 @@ public class Profile extends AppCompatActivity {
         userPhoneDisp =(TextView)findViewById(R.id.tvNumber1);
         userEmailDisp =(TextView)findViewById(R.id.tvNumber3);
         userBudgetDisp =(TextView)findViewById(R.id.cash);
+        profPic=(ImageView)findViewById(R.id.prof_pic);
 
         if(userName== null || userPhoneDisp==null || userEmailDisp==null || userBudgetDisp==null){
 
@@ -73,6 +81,10 @@ public class Profile extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Intent i= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(i, 1);
+
                 Snackbar.make(view, "Edit Profile Action ", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -136,4 +148,20 @@ public class Profile extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==1 && resultCode==RESULT_OK && data != null){
+            Uri selectedImage= data.getData();
+
+            try {
+                Bitmap bitmap= MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                profPic.setImageBitmap(bitmap);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
