@@ -38,8 +38,9 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
-        //getActionBar().hide();
+
         setContentView(R.layout.activity_profile);
+       // getActionBar().hide();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -82,6 +83,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                    // method for Picking pictures in phone gallery
                 Intent i= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, 1);
 

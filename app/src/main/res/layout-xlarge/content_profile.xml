@@ -8,8 +8,8 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/colorPrimaryDark"
+        android:layout_height="250dp"
+        android:background="@color/colorPrimary"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="false"
+            android:layout_above="@+id/app_bar"
             app:contentScrim="?attr/colorPrimary"
             app:statusBarScrim="@null"
             app:expandedTitleMarginEnd="64dp"
