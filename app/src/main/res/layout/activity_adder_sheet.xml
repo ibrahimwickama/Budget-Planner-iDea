@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/expAdder"
         android:layout_below="@+id/textView4"
         android:layout_alignRight="@+id/spinner"
         android:layout_alignEnd="@+id/spinner"

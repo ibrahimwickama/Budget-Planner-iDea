@@ -23,15 +23,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_EMAIL = "email";
     private static final String COLUMN_PHONE= "phone";
     private static final String COLUMN_BUDGET= "budget";
-    public static final String COLUMN_PASS = "password";
+
+    private static final String COLUMN_TRANSPORT= "transport";
+    private static final String COLUMN_BILLS= "bills";
+    private static final String COLUMN_SHOPPING= "shopping";
+    private static final String COLUMN_FOOD= "food";
+    public static final String COLUMN_CREDITS = "credits";
 
     public static final String CREATE_TABLE_USERS = "CREATE TABLE " + USER_TABLE + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_UNAME + " TEXT,"
             + COLUMN_EMAIL + " TEXT,"
             + COLUMN_PHONE + " TEXT,"
-            + COLUMN_BUDGET + " TEXT,"
-            + COLUMN_PASS + " TEXT);";
+            + COLUMN_BUDGET + " INTEGER,"
+            + COLUMN_TRANSPORT + " INTEGER,"
+            + COLUMN_BILLS + " INTEGER,"
+            + COLUMN_SHOPPING + " INTEGER,"
+            + COLUMN_FOOD + " INTEGER,"
+            + COLUMN_CREDITS + " INTEGER);";
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -57,30 +66,77 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(TAG, "user inserted" + id);
     }
 
-    public boolean getUser(String username, String pass){
+//    public boolean getUser(String username, String pass){
+//
+//        String selectQuery = "select * from  " + USER_TABLE + " where " +
+//                COLUMN_UNAME + " = " + "'"+username+"'" + " and " + COLUMN_PASS + " = " + "'"+pass+"'";
+//
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery(selectQuery, null);
+//        // Move to first row
+//        cursor.moveToFirst();
+//        if (cursor.getCount() > 0) {
+//
+//            return true;
+//        }
+//        cursor.close();
+//        db.close();
+//
+//        return false;
+//    }
 
-        String selectQuery = "select * from  " + USER_TABLE + " where " +
-                COLUMN_UNAME + " = " + "'"+username+"'" + " and " + COLUMN_PASS + " = " + "'"+pass+"'";
 
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        // Move to first row
-        cursor.moveToFirst();
-        if (cursor.getCount() > 0) {
-
-            return true;
-        }
-        cursor.close();
-        db.close();
-
-        return false;
-    }
 
     public Cursor getAllData() {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         String query= "select * from "+USER_TABLE;
         Cursor res = db.rawQuery(query,null);
         return res;
+    }
+
+    public Cursor getAllExpData(){
+        SQLiteDatabase db= this.getReadableDatabase();
+        String query= "select * from " + USER_TABLE;
+        Cursor cursor= db.rawQuery(query, null);
+        return cursor;
+    }
+
+    public void addExpense(String selectedExp, int expCash){
+        SQLiteDatabase db= this.getWritableDatabase();
+        ContentValues values= new ContentValues();
+
+        if(selectedExp == "Transport"){
+            values.put(COLUMN_TRANSPORT, expCash);
+            String query= "update " + USER_TABLE + " set " + COLUMN_TRANSPORT + " = " + expCash + " where " + COLUMN_ID + " = 1";
+            db.execSQL(query);
+
+        }else if(selectedExp == "Bills"){
+            values.put(COLUMN_BILLS, expCash);
+            String query= "update " + USER_TABLE + " set " + COLUMN_BILLS + " = " + expCash + " where " + COLUMN_ID + " = 1";
+            db.execSQL(query);
+
+        }else if(selectedExp == "Shopping"){
+            values.put(COLUMN_SHOPPING, expCash);
+            String query= "update " + USER_TABLE + " set " + COLUMN_SHOPPING + " = " + expCash + " where " + COLUMN_ID + " = 1";
+            db.execSQL(query);
+
+        }else if(selectedExp == "Food"){
+            values.put(COLUMN_FOOD, expCash);
+            String query= "update " + USER_TABLE + " set " + COLUMN_FOOD + " = " + expCash + " where " + COLUMN_ID + " = 1";
+            db.execSQL(query);
+
+        }else if(selectedExp == "Credits"){
+            values.put(COLUMN_CREDITS, expCash);
+            String query= "update " + USER_TABLE + " set " + COLUMN_CREDITS + " = " + expCash + " where " + COLUMN_ID + " = 1";
+            db.execSQL(query);
+
+        }
+
+       // long id = db.update(USER_TABLE, values, "_id = 1", null);
+        db.close();
+
+        //Log.d(TAG, "user inserted" + id);
+
     }
 
 

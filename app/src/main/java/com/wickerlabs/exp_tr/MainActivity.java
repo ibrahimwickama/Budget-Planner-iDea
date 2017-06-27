@@ -21,11 +21,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wickerlabs.exp_tr.Databases.DatabaseHelper;
 
@@ -38,11 +40,12 @@ public class MainActivity extends AppCompatActivity
     ViewPager viewPager;
     static TabHost tabHost;
     Spinner spinner;
+    EditText expAdder;
 
     DatabaseHelper helper;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -79,10 +82,12 @@ public class MainActivity extends AppCompatActivity
                     cashfrom.setText(res.getString(4));
                 }
 
-                spinner=(Spinner)promptsView.findViewById(R.id.spinner);
+                spinner=(Spinner) promptsView.findViewById(R.id.spinner);
+                expAdder= (EditText) promptsView.findViewById(R.id.expAdder);
+
 
                 String[] a={"Transport", "Bills","Shopping","Food","Credits"};
-                SpinnerAdapter spinnerAdapter= new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, a );
+                final SpinnerAdapter spinnerAdapter= new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, a );
 
                 spinner.setAdapter(spinnerAdapter);
 
@@ -92,6 +97,14 @@ public class MainActivity extends AppCompatActivity
                         .setPositiveButton("Set",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
+
+                                        String selectedExp = (String) spinner.getSelectedItem();
+                                        int expCash= Integer.parseInt(expAdder.getText().toString());
+
+                                        helper.addExpense(selectedExp, expCash);
+
+
+                                        Toast.makeText(MainActivity.this, " selected", Toast.LENGTH_SHORT).show();
 
                                         // weka functions humu
 
@@ -126,6 +139,7 @@ public class MainActivity extends AppCompatActivity
         initTabHost();
         initViewPager();
     }
+
 
     // Creating Tabs on the screen
     private void initTabHost() {

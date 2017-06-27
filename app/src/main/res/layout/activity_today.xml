@@ -45,7 +45,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1,000"
+            android:text="0"
             android:id="@+id/today_transCash"
             android:textSize="30dp"
             android:layout_marginRight="5dp"
@@ -84,7 +84,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="8,500"
+            android:text="0"
             android:id="@+id/today_billsCash"
             android:textSize="30dp"
             android:layout_marginRight="5dp"
@@ -125,7 +125,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="17,600"
+            android:text="0"
             android:id="@+id/today_shopngCash"
             android:textSize="30dp"
             android:layout_marginRight="5dp"
@@ -166,7 +166,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3,000"
+            android:text="0"
             android:id="@+id/today_foodsCash"
             android:textSize="30dp"
             android:layout_marginRight="5dp"
@@ -207,7 +207,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1,500"
+            android:text="0"
             android:id="@+id/today_creditsCash"
             android:textSize="30dp"
             android:layout_marginRight="5dp"

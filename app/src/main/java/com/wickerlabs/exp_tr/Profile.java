@@ -44,6 +44,8 @@ public class Profile extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         helper= new DatabaseHelper(this);
 
         editButton=(Button)findViewById(R.id.editBtn);

@@ -32,7 +32,7 @@ public class AdderSheet extends AppCompatActivity {
 
         cashfrom=(TextView)findViewById(R.id.cash_from);
         spinner=(Spinner)findViewById(R.id.spinner);
-        cost_in=(EditText)findViewById(R.id.editText);
+        cost_in=(EditText)findViewById(R.id.expAdder);
         //add=(Button)findViewById(R.id.button);
 
 

@@ -57,7 +57,6 @@ public class Disp1 extends Fragment {
         Disp1 disp1 = new Disp1();
         Bundle b = new Bundle();
         b.putString("msg", text);
-
         disp1.setArguments(b);
 
         return disp1;
