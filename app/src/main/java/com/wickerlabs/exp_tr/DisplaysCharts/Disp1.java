@@ -70,45 +70,12 @@ public class Disp1 extends Fragment {
             Log.i("Result value", ""+totalExp);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        pieView.setPercentage(90);
-//
-//            // Change the text of the widget
-//        pieView.setInnerText("90%");
-//
         // Change the text size of the widget
         pieView.setPercentageTextSize(45);
 
         PieAngleAnimation animation = new PieAngleAnimation(pieView);
         animation.setDuration(2000); //This is the duration of the animation in millis
         pieView.startAnimation(animation);
-
-            // Change the color fill of the bar representing the current percentage
-        // pieView.setPercentageBackgroundColor(getResources().getColor(R.color.customColor1));
-
-            // Change the color fill of the background of the widget, by default is transparent
-        //pieView.setMainBackgroundColor(getResources().getColor(R.color.customColor5));
-
-            // Change the color of the text of the widget
-        // pieView.setTextColor(getResources().getColor(R.color.customColor12));
-
 
         return v;
     }
