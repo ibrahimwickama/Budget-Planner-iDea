@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Used"
+        android:text="Remain"
         android:id="@+id/textView18"
         android:layout_alignTop="@+id/pieView"
         android:layout_alignParentRight="true"
