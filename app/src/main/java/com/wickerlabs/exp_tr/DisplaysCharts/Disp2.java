@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class Disp2 extends Fragment {
 
     DatabaseHelper helper;
-    int budgetCash, transportCash, billsCash, shoppingCash, foodsCash, creditsCash, a,b,c,d,e,f;
+    float budgetCash, transportCash, billsCash, shoppingCash, foodsCash, creditsCash, a,b,c,d,e,f;
     float resultTransport, resultBills, resultShopping, resultFoods, resultCredits, z;
 
     @Nullable
@@ -62,11 +62,11 @@ public class Disp2 extends Fragment {
 
             }
                 // calculate each expense percentage value it occupies from budgetCash given
-            resultTransport= (float) ((transportCash )*100/budgetCash);
-            resultBills= (float) ((billsCash )*100/budgetCash);
-            resultShopping= (float) ((shoppingCash )*100/budgetCash);
-            resultFoods= (float) ((foodsCash )*100/budgetCash);
-            resultCredits= (float) ((creditsCash )*100/budgetCash);
+            resultTransport= (transportCash )*100/budgetCash;
+            resultBills= (billsCash )*100/budgetCash;
+            resultShopping= (shoppingCash )*100/budgetCash;
+            resultFoods= (foodsCash )*100/budgetCash;
+            resultCredits= (creditsCash )*100/budgetCash;
 
                 // set results to the pieChart view for each expense category
             entries.add(new Entry(resultTransport, 0));

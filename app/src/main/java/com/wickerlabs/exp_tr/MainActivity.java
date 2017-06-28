@@ -106,6 +106,10 @@ public class MainActivity extends AppCompatActivity
 
                                         Toast.makeText(MainActivity.this, " selected", Toast.LENGTH_SHORT).show();
 
+                                        // refreshes the MainActivity
+                                        finish();
+                                        startActivity(getIntent());
+
                                     }
                                 })
                         .setNegativeButton("Cancel",

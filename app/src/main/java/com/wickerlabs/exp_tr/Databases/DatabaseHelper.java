@@ -123,6 +123,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void deleteAll(){
         SQLiteDatabase db= this.getReadableDatabase();
         String query= "delete from " + USER_TABLE + " where " + COLUMN_ID + " = 1";
+        //String query= "drop table " + USER_TABLE;
         db.execSQL(query);
 
     }

@@ -32,16 +32,24 @@ public class Today extends Fragment {
         foodsCash= (TextView) v.findViewById(R.id.today_foodsCash);
         creditsCash= (TextView) v.findViewById(R.id.today_creditsCash);
 
-
         Cursor cursor= helper.getAllExpData();
-            while(cursor.moveToNext()){
-                transportCash.setText(""+cursor.getInt(5));
-                billsCash.setText(""+cursor.getInt(6));
-                shoppingCash.setText(""+cursor.getInt(7));
-                foodsCash.setText(""+cursor.getInt(8));
-                creditsCash.setText(""+cursor.getInt(9));
+        if(cursor.getCount()==0){
+            transportCash.setText("0");
+            billsCash.setText("0");
+            shoppingCash.setText("0");
+            foodsCash.setText("0");
+            creditsCash.setText("0");
+
+        }else {
+            while (cursor.moveToNext()) {
+                transportCash.setText("" + cursor.getInt(5));
+                billsCash.setText("" + cursor.getInt(6));
+                shoppingCash.setText("" + cursor.getInt(7));
+                foodsCash.setText("" + cursor.getInt(8));
+                creditsCash.setText("" + cursor.getInt(9));
 
             }
+        }
 
 
         return  v;

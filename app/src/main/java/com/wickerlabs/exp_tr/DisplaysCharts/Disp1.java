@@ -13,13 +13,15 @@ import android.widget.Toast;
 import com.wickerlabs.exp_tr.Databases.DatabaseHelper;
 import com.wickerlabs.exp_tr.R;
 
+import java.text.NumberFormat;
+
 import az.plainpie.PieView;
 import az.plainpie.animation.PieAngleAnimation;
 
 public class Disp1 extends Fragment {
 
     DatabaseHelper helper;
-    int budgetCash, transportCash, billsCash, shoppingCash, foodsCash, creditsCash, totalExp,a,b,c,d,e,f;
+    float budgetCash, transportCash, billsCash, shoppingCash, foodsCash, creditsCash, totalExp,a,b,c,d,e,f;
 
 
     @Nullable
@@ -56,17 +58,24 @@ public class Disp1 extends Fragment {
                 creditsCash = Integer.valueOf(cursor.getInt(9));
 
             }
+                // makes a number formatter of 1 decimal place in data values
+            NumberFormat formatter = NumberFormat.getNumberInstance();
+            formatter.setMinimumFractionDigits(1);
+            formatter.setMaximumFractionDigits(1);
 
-            float totalExp= (float) ((transportCash + billsCash + shoppingCash + foodsCash + creditsCash)*100/budgetCash);
 
-            float result= 100 - totalExp;
+            float totalExp= (transportCash + billsCash + shoppingCash + foodsCash + creditsCash)*100/budgetCash;
+
+            float result= 100 - Float.parseFloat(formatter.format(totalExp));
+
+            String output = formatter.format(result);
 
                 // set remain percentage to the display view
-            pieView.setPercentage(result);
+            pieView.setPercentage(Float.parseFloat(output));
                 // Change the text of the widget
-            pieView.setInnerText(result+"%");
+            pieView.setInnerText(output+"%");
 
-            Toast.makeText(getContext(), ""+totalExp, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), ""+output, Toast.LENGTH_SHORT).show();
             Log.i("Result value", ""+totalExp);
         }
 
