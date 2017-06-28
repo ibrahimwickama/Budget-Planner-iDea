@@ -1,37 +1,98 @@
-package com.wickerlabs.exp_tr;
+package com.wickerlabs.exp_tr.DisplaysCharts;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.wickerlabs.exp_tr.Databases.DatabaseHelper;
+import com.wickerlabs.exp_tr.R;
 
 import az.plainpie.PieView;
 import az.plainpie.animation.PieAngleAnimation;
 
 public class Disp1 extends Fragment {
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_disp1);
-//    }
+    DatabaseHelper helper;
+    int budgetCash, transportCash, billsCash, shoppingCash, foodsCash, creditsCash, totalExp,a,b,c,d,e,f;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_disp1, container, false);
 
+        helper= new DatabaseHelper(getContext());
+        Cursor cursor= helper.getAllExpData();
+
         PieView pieView = (PieView) v.findViewById(R.id.pieView);
         pieView.setPercentageBackgroundColor(getResources().getColor(R.color.lightBlue));
         pieView.setPieInnerPadding(50);
         pieView.setInnerTextVisibility(View.VISIBLE);
-        pieView.setPercentage(90);
 
+
+        if(cursor.getCount()==0){
+            pieView.setPercentage(100);
             // Change the text of the widget
-        pieView.setInnerText("90%");
+            pieView.setInnerText("100%");
+        }else{
 
+            while(cursor.moveToNext()){
+                    //get the column values of expenses from Database
+                budgetCash = Integer.valueOf(cursor.getInt(4));
+
+                transportCash = Integer.valueOf(cursor.getInt(5));
+
+                billsCash = Integer.valueOf(cursor.getInt(6));
+
+                shoppingCash = Integer.valueOf(cursor.getInt(7));
+
+                foodsCash = Integer.valueOf(cursor.getInt(8));
+
+                creditsCash = Integer.valueOf(cursor.getInt(9));
+
+            }
+
+            float totalExp= (float) ((transportCash + billsCash + shoppingCash + foodsCash + creditsCash)*100/budgetCash);
+
+            float result= 100 - totalExp;
+                // set remain percentage to the display view
+            pieView.setPercentage(result);
+                // Change the text of the widget
+            pieView.setInnerText(result+"%");
+
+            Toast.makeText(getContext(), ""+totalExp, Toast.LENGTH_SHORT).show();
+            Log.i("Result value", ""+totalExp);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        pieView.setPercentage(90);
+//
+//            // Change the text of the widget
+//        pieView.setInnerText("90%");
+//
         // Change the text size of the widget
         pieView.setPercentageTextSize(45);
 

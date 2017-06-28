@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="385dp"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        tools:context="com.wickerlabs.exp_tr.Today"
+        tools:context=".Expenses.Today"
         android:background="#ece8e8"
         android:paddingLeft="5dp"
         android:paddingRight="5dp">

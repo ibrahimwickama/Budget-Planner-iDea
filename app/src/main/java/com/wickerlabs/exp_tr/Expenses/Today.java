@@ -1,4 +1,4 @@
-package com.wickerlabs.exp_tr;
+package com.wickerlabs.exp_tr.Expenses;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wickerlabs.exp_tr.Databases.DatabaseHelper;
+import com.wickerlabs.exp_tr.R;
 
 public class Today extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.wickerlabs.exp_tr;
+package com.wickerlabs.exp_tr.Expenses;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.wickerlabs.exp_tr.R;
 
 public class Yesterday extends Fragment {
 

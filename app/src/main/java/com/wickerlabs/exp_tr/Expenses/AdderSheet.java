@@ -1,4 +1,4 @@
-package com.wickerlabs.exp_tr;
+package com.wickerlabs.exp_tr.Expenses;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.wickerlabs.exp_tr.R;
 
 public class AdderSheet extends AppCompatActivity {
     TextView cashfrom; Spinner spinner;

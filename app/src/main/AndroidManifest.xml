@@ -20,18 +20,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Summaries" />
-        <activity android:name=".Today" />
-        <activity android:name=".Yesterday" />
+        <activity android:name=".Expenses.Summaries" />
+        <activity android:name=".Expenses.Today" />
+        <activity android:name=".Expenses.Yesterday" />
         <activity
-            android:name=".AdderSheet"
+            android:name=".Expenses.AdderSheet"
             android:theme="@style/CustomPopUp" />
-        <activity android:name=".Disp1" />
-        <activity android:name=".Disp2" />
+        <activity android:name=".DisplaysCharts.Disp1" />
+        <activity android:name=".DisplaysCharts.Disp2" />
         <activity
             android:name=".Profile"
             android:label="@string/title_activity_profile"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Settings"></activity>
     </application>
 
 </manifest>

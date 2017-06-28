@@ -132,10 +132,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         }
 
-       // long id = db.update(USER_TABLE, values, "_id = 1", null);
         db.close();
+    }
 
-        //Log.d(TAG, "user inserted" + id);
+    public void updateBudget(int newBudgetMoney){
+        SQLiteDatabase db= this.getReadableDatabase();
+        String query= "update " + USER_TABLE + " set " + COLUMN_BUDGET + " = " + newBudgetMoney + " where " + COLUMN_ID + " = 1";
+        db.execSQL(query);
+    }
+
+    public void deleteAll(){
+        SQLiteDatabase db= this.getReadableDatabase();
+        String query= "delete from " + USER_TABLE + " where " + COLUMN_ID + " = 1";
+        db.execSQL(query);
 
     }
 

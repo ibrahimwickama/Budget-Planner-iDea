@@ -4,6 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.wickerlabs.exp_tr.DisplaysCharts.Disp1;
+import com.wickerlabs.exp_tr.DisplaysCharts.Disp2;
+
 /**
  * Created by anupamchugh on 26/12/15.
  */

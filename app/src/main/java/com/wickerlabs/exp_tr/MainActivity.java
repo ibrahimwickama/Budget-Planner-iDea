@@ -30,6 +30,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wickerlabs.exp_tr.Databases.DatabaseHelper;
+import com.wickerlabs.exp_tr.Expenses.Summaries;
+import com.wickerlabs.exp_tr.Expenses.Today;
+import com.wickerlabs.exp_tr.Expenses.Yesterday;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -259,6 +262,8 @@ public class MainActivity extends AppCompatActivity
             // Handle the camera action
 
         } else if (id == R.id.nav_settings) {
+            Intent i= new Intent(this, Settings.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_cust_visuals) {
 

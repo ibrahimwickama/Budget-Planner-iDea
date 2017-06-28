@@ -1,4 +1,4 @@
-package com.wickerlabs.exp_tr;
+package com.wickerlabs.exp_tr.DisplaysCharts;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.wickerlabs.exp_tr.Databases.DatabaseHelper;
+import com.wickerlabs.exp_tr.R;
 
 import java.util.ArrayList;
 
@@ -35,53 +36,46 @@ public class Disp2 extends Fragment {
         Cursor cursor= helper.getAllExpData();
 
         ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(4f, 0));
-        entries.add(new Entry(8f, 1));
-        entries.add(new Entry(6f, 2));
-        entries.add(new Entry(12f, 3));
-        entries.add(new Entry(18f, 4));
 
+            // check if in database cursor gets any row of data.
+        if(cursor.getCount()==0){
+            entries.add(new Entry(4f, 0));
+            entries.add(new Entry(8f, 1));
+            entries.add(new Entry(6f, 2));
+            entries.add(new Entry(12f, 3));
+            entries.add(new Entry(18f, 4));
 
-//        if(cursor.getCount()==0){
-//            entries.add(new Entry(4f, 0));
-//            entries.add(new Entry(8f, 1));
-//            entries.add(new Entry(6f, 2));
-//            entries.add(new Entry(12f, 3));
-//            entries.add(new Entry(18f, 4));
-//
-//        }else {
-//            while (cursor.moveToNext()) {
-//                budgetCash = Integer.valueOf(cursor.getInt(4));
-//
-//                transportCash = Integer.valueOf(cursor.getInt(5));
-//
-//                billsCash = Integer.valueOf(cursor.getInt(6));
-//
-//                shoppingCash = Integer.valueOf(cursor.getInt(7));
-//
-//                foodsCash = Integer.valueOf(cursor.getInt(8));
-//                creditsCash = Integer.valueOf(cursor.getInt(9));
-//
-//
-//                //z= Integer.valueOf(cursor.getInt(5))/Integer.valueOf(cursor.getInt(4));
-//            }
-//
-//
-//            //resultTransport = (transportCash / budgetCash) * 100;
-//            resultTransport = billsCash/transportCash;
-//            resultBills = (billsCash / budgetCash) * 100;
-//            resultShopping = (shoppingCash / budgetCash) * 100;
-//            resultFoods = (foodsCash / budgetCash) * 100;
-//            resultCredits = (creditsCash / budgetCash) * 100;
-//
-//            entries.add(new Entry(resultTransport, 0));
-//            entries.add(new Entry(resultBills, 1));
-//            entries.add(new Entry(resultShopping, 2));
-//            entries.add(new Entry(resultFoods, 3));
-//            entries.add(new Entry(resultCredits, 4));
-//
-//            Toast.makeText(getContext(), ""+resultTransport, Toast.LENGTH_SHORT).show();
-//        }
+        }else {
+            while (cursor.moveToNext()) {
+                    // get the column values of expenses from Database
+                budgetCash = Integer.valueOf(cursor.getInt(4));
+
+                transportCash = Integer.valueOf(cursor.getInt(5));
+
+                billsCash = Integer.valueOf(cursor.getInt(6));
+
+                shoppingCash = Integer.valueOf(cursor.getInt(7));
+
+                foodsCash = Integer.valueOf(cursor.getInt(8));
+
+                creditsCash = Integer.valueOf(cursor.getInt(9));
+
+            }
+                // calculate each expense percentage value it occupies from budgetCash given
+            resultTransport= (float) ((transportCash )*100/budgetCash);
+            resultBills= (float) ((billsCash )*100/budgetCash);
+            resultShopping= (float) ((shoppingCash )*100/budgetCash);
+            resultFoods= (float) ((foodsCash )*100/budgetCash);
+            resultCredits= (float) ((creditsCash )*100/budgetCash);
+
+                // set results to the pieChart view for each expense category
+            entries.add(new Entry(resultTransport, 0));
+            entries.add(new Entry(resultBills, 1));
+            entries.add(new Entry(resultShopping, 2));
+            entries.add(new Entry(resultFoods, 3));
+            entries.add(new Entry(resultCredits, 4));
+
+        }
 
         PieDataSet dataset = new PieDataSet(entries, "Key");
 
@@ -99,8 +93,7 @@ public class Disp2 extends Fragment {
 
         pieChart2.animateY(5000);
 
-        pieChart2.saveToGallery("/sd/mychart.jpg", 85); // 85 is the quality of the image
-
+        //pieChart2.saveToGallery("/sd/mychart.jpg", 85); // 85 is the quality of the image
 
         return v;
     }
@@ -110,7 +103,6 @@ public class Disp2 extends Fragment {
         Disp2 disp2 = new Disp2();
         Bundle b = new Bundle();
         b.putString("msg", text);
-
         disp2.setArguments(b);
 
         return disp2;

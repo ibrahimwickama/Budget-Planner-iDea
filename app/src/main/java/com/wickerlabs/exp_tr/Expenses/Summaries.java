@@ -1,4 +1,4 @@
-package com.wickerlabs.exp_tr;
+package com.wickerlabs.exp_tr.Expenses;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.wickerlabs.exp_tr.R;
 
 public class Summaries extends Fragment{
 
