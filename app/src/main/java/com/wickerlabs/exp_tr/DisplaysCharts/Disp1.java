@@ -35,7 +35,6 @@ public class Disp1 extends Fragment {
         pieView.setPieInnerPadding(50);
         pieView.setInnerTextVisibility(View.VISIBLE);
 
-
         if(cursor.getCount()==0){
             pieView.setPercentage(100);
             // Change the text of the widget
@@ -61,6 +60,7 @@ public class Disp1 extends Fragment {
             float totalExp= (float) ((transportCash + billsCash + shoppingCash + foodsCash + creditsCash)*100/budgetCash);
 
             float result= 100 - totalExp;
+
                 // set remain percentage to the display view
             pieView.setPercentage(result);
                 // Change the text of the widget

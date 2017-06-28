@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity
                 Snackbar.make(view, "Adding Expenses", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
-
                 // get adderSheet.xml view as dialog view
                 LayoutInflater li = LayoutInflater.from(MainActivity.this);
                 View promptsView = li.inflate(R.layout.activity_adder_sheet, null);
@@ -88,7 +87,6 @@ public class MainActivity extends AppCompatActivity
                 spinner=(Spinner) promptsView.findViewById(R.id.spinner);
                 expAdder= (EditText) promptsView.findViewById(R.id.expAdder);
 
-
                 String[] a={"Transport", "Bills","Shopping","Food","Credits"};
                 final SpinnerAdapter spinnerAdapter= new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, a );
 
@@ -106,10 +104,7 @@ public class MainActivity extends AppCompatActivity
 
                                         helper.addExpense(selectedExp, expCash);
 
-
                                         Toast.makeText(MainActivity.this, " selected", Toast.LENGTH_SHORT).show();
-
-                                        // weka functions humu
 
                                     }
                                 })
@@ -142,7 +137,6 @@ public class MainActivity extends AppCompatActivity
         initTabHost();
         initViewPager();
     }
-
 
     // Creating Tabs on the screen
     private void initTabHost() {
@@ -237,9 +231,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement

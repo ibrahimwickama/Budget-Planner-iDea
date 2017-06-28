@@ -146,8 +146,6 @@ public class Profile extends AppCompatActivity {
 
         alertDialog.getWindow().setLayout(ViewPager.LayoutParams.MATCH_PARENT, ViewPager.LayoutParams.MATCH_PARENT);
         alertDialog.show();
-
-
     }
 
     @Override

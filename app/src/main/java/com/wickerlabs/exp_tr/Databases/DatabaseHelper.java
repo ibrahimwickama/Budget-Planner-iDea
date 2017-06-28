@@ -66,27 +66,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(TAG, "user inserted" + id);
     }
 
-//    public boolean getUser(String username, String pass){
-//
-//        String selectQuery = "select * from  " + USER_TABLE + " where " +
-//                COLUMN_UNAME + " = " + "'"+username+"'" + " and " + COLUMN_PASS + " = " + "'"+pass+"'";
-//
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor cursor = db.rawQuery(selectQuery, null);
-//        // Move to first row
-//        cursor.moveToFirst();
-//        if (cursor.getCount() > 0) {
-//
-//            return true;
-//        }
-//        cursor.close();
-//        db.close();
-//
-//        return false;
-//    }
-
-
-
     public Cursor getAllData() {
         SQLiteDatabase db = this.getReadableDatabase();
         String query= "select * from "+USER_TABLE;
@@ -147,7 +126,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
 
     }
-
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
