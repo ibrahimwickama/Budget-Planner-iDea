@@ -2,6 +2,7 @@ package com.wickerlabs.exp_tr;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -59,6 +60,9 @@ public class Settings extends AppCompatActivity {
                                 //takes the data and adds them to Database
                                 helper.updateBudget(newBudgetMoney);
 
+                                Intent i = new Intent(Settings.this, MainActivity.class);
+                                startActivity(i);
+
                                 Toast.makeText(Settings.this, "Done", Toast.LENGTH_SHORT).show();
                             }
                         })
@@ -103,6 +107,7 @@ public class Settings extends AppCompatActivity {
 
         mProgressHandler.sendEmptyMessage(0);
         mProgressDialog.show();
+
     }
 
 

@@ -129,8 +129,12 @@ public class Profile extends AppCompatActivity {
                                     //takes the data and adds them to Database
                                 helper.addUser(username,userPhone, userEmail, userBudget);
 
-                                Toast.makeText(Profile.this, "Done", Toast.LENGTH_SHORT).show();
-                                // weka functions humu
+                                finish();
+                                startActivity(new Intent(Profile.this, MainActivity.class));
+
+//                                Intent i = new Intent(Profile.this, MainActivity.class);
+//                                startActivity(i);
+//
 
                             }
                         })

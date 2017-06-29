@@ -60,6 +60,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_PHONE, phone);
         values.put(COLUMN_BUDGET, budget);
 
+        values.put(COLUMN_TRANSPORT, 0);
+        values.put(COLUMN_BILLS, 0);
+        values.put(COLUMN_SHOPPING, 0);
+        values.put(COLUMN_FOOD, 0);
+        values.put(COLUMN_CREDITS, 0);
+
         long id = db.insert(USER_TABLE, null, values);
         db.close();
 
@@ -86,27 +92,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if(selectedExp == "Transport"){
             values.put(COLUMN_TRANSPORT, expCash);
-            String query= "update " + USER_TABLE + " set " + COLUMN_TRANSPORT + " = " + expCash + " where " + COLUMN_ID + " = 1";
+            //String query= "update " + USER_TABLE + " set " + COLUMN_TRANSPORT + " = " + expCash + " where " + COLUMN_ID + " = 1";
+            String query= "update " + USER_TABLE + " set " + COLUMN_TRANSPORT + " = " + COLUMN_TRANSPORT + " + " + expCash + " where " + COLUMN_ID + " = 1";
             db.execSQL(query);
 
         }else if(selectedExp == "Bills"){
             values.put(COLUMN_BILLS, expCash);
-            String query= "update " + USER_TABLE + " set " + COLUMN_BILLS + " = " + expCash + " where " + COLUMN_ID + " = 1";
+            //String query= "update " + USER_TABLE + " set " + COLUMN_BILLS + " = " + expCash + " where " + COLUMN_ID + " = 1";
+            String query= "update " + USER_TABLE + " set " + COLUMN_BILLS + " = " + COLUMN_BILLS + " + " + expCash + " where " + COLUMN_ID + " = 1";
             db.execSQL(query);
 
         }else if(selectedExp == "Shopping"){
             values.put(COLUMN_SHOPPING, expCash);
-            String query= "update " + USER_TABLE + " set " + COLUMN_SHOPPING + " = " + expCash + " where " + COLUMN_ID + " = 1";
+            //String query= "update " + USER_TABLE + " set " + COLUMN_SHOPPING + " = " + expCash + " where " + COLUMN_ID + " = 1";
+            String query= "update " + USER_TABLE + " set " + COLUMN_SHOPPING + " = " + COLUMN_SHOPPING + " + " + expCash + " where " + COLUMN_ID + " = 1";
             db.execSQL(query);
 
         }else if(selectedExp == "Food"){
             values.put(COLUMN_FOOD, expCash);
-            String query= "update " + USER_TABLE + " set " + COLUMN_FOOD + " = " + expCash + " where " + COLUMN_ID + " = 1";
+            //String query= "update " + USER_TABLE + " set " + COLUMN_FOOD + " = " + expCash + " where " + COLUMN_ID + " = 1";
+            String query= "update " + USER_TABLE + " set " + COLUMN_FOOD + " = " + COLUMN_FOOD + " + " + expCash + " where " + COLUMN_ID + " = 1";
             db.execSQL(query);
 
         }else if(selectedExp == "Credits"){
             values.put(COLUMN_CREDITS, expCash);
-            String query= "update " + USER_TABLE + " set " + COLUMN_CREDITS + " = " + expCash + " where " + COLUMN_ID + " = 1";
+            //String query= "update " + USER_TABLE + " set " + COLUMN_CREDITS + " = " + expCash + " where " + COLUMN_ID + " = 1";
+            String query= "update " + USER_TABLE + " set " + COLUMN_CREDITS + " = " + COLUMN_CREDITS + " + " + expCash + " where " + COLUMN_ID + " = 1";
             db.execSQL(query);
 
         }
@@ -121,7 +132,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void deleteAll(){
-        SQLiteDatabase db= this.getReadableDatabase();
+        SQLiteDatabase db= this.getWritableDatabase();
         String query= "delete from " + USER_TABLE + " where " + COLUMN_ID + " = 1";
         //String query= "drop table " + USER_TABLE;
         db.execSQL(query);
