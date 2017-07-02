@@ -1,5 +1,6 @@
 package com.wickerlabs.exp_tr;
 
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -24,8 +25,6 @@ import android.widget.Toast;
 
 import com.wickerlabs.exp_tr.Databases.DatabaseHelper;
 
-import java.io.IOException;
-
 public class Profile extends AppCompatActivity {
 
     TextView userNameDisp, userPhoneDisp, userEmailDisp, userBudgetDisp;
@@ -33,6 +32,10 @@ public class Profile extends AppCompatActivity {
     Button editButton;
     ImageView profPic;
     DatabaseHelper helper;
+
+    Intent CropIntent;
+    Uri uri;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +88,8 @@ public class Profile extends AppCompatActivity {
 
                     // method for Picking pictures in phone gallery
                 Intent i= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(i, 1);
+                startActivityForResult(i, 2);
+
 
                 Snackbar.make(view, "Edit Profile Action ", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
@@ -152,20 +156,53 @@ public class Profile extends AppCompatActivity {
         alertDialog.show();
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode==1 && resultCode==RESULT_OK && data != null){
-            Uri selectedImage= data.getData();
-
-            try {
-                Bitmap bitmap= MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+        if(requestCode == 0 && resultCode == RESULT_OK)
+            CropImage();
+        else if(requestCode == 2)
+        {
+            if(data != null)
+            {
+                uri = data.getData();
+                CropImage();
+            }
+        }
+        else if (requestCode == 1)
+        {
+            if(data != null)
+            {
+                Bundle bundle = data.getExtras();
+                Bitmap bitmap = bundle.getParcelable("data");
                 profPic.setImageBitmap(bitmap);
-
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
+
+
+
+    private void CropImage() {
+
+        try{
+            CropIntent = new Intent("com.android.camera.action.CROP");
+            CropIntent.setDataAndType(uri,"image/*");
+
+            CropIntent.putExtra("crop","true");
+            CropIntent.putExtra("outputX",400);
+            CropIntent.putExtra("outputY",250);
+            CropIntent.putExtra("aspectX",8);
+            CropIntent.putExtra("aspectY",6);
+            CropIntent.putExtra("scaleUpIfNeeded",true);
+            CropIntent.putExtra("return-data",true);
+
+            startActivityForResult(CropIntent,1);
+        }
+        catch (ActivityNotFoundException ex)
+        {
+
+        }
+
+    }
+
 }
