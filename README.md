@@ -1,9 +1,6 @@
 # Budget-Planner-iDea
-simple android application giving idea on a personal financial budget planner.
-<br> 
+simple android application giving idea on a personal financial budget planner. 
 <img heiht="100" width="250" src="https://ibrahimwickama.000webhostapp.com/SmsClone/images/Exptr1.png" /> 
-<br> 
 <img heiht="100" width="250" src="https://ibrahimwickama.000webhostapp.com/SmsClone/images/Exptr2.png" /> 
-<br> 
 <img heiht="100" width="250" src="https://ibrahimwickama.000webhostapp.com/SmsClone/images/Exptr3.png" /> 
-<br>
+
